@@ -12,7 +12,7 @@ class User {
     return this._userModel.email;
   }
   get name(): string {
-    return this._userModel.fullName;
+    return this._userModel.name;
   }
   get photo(): string {
     return this._userModel.photo;

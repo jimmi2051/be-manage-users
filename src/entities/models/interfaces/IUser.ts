@@ -3,7 +3,7 @@ interface IUser extends mongoose.Document {
   _id: any;
   address: string;
   email: string;
-  fullName: string;
+  name: string;
   password: string;
   photo: string;
   telephone: string;
