@@ -1,27 +1,27 @@
 import UserSchema from "../../../../entities/schemas/User";
 import IUser from "../../../../entities/models/interfaces/IUser";
 import { uploadPhotoMiddleware } from "../../../../middlewares/upload";
-import { deleteFile, validateEmail } from "../../../../utils/Helpers";
+import { deleteFile } from "../../../../utils/Helpers";
+import { validateUser } from "../../../../services/users";
+import { STATIC_URL } from "../../../../utils/Constants";
 export default async (req: any, res: any) => {
   try {
     await uploadPhotoMiddleware(req, res);
-    const { email } = req.body;
-    if (validateEmail(email)) {
-      const data: IUser = <IUser>{
-        ...req.body,
-        photo: req?.file?.originalname ?? "",
-      };
+    const data: IUser = <IUser>{
+      ...req.body,
+      photo: "/static/" + req?.file?.originalname ?? "",
+    };
+    const isValidate = await validateUser(data);
+    if (isValidate.status) {
       const user = await UserSchema.create(data);
       res.send({ status: true, data: user });
     } else {
       // Revert file uploaded
-      deleteFile(req.file.path);
+      if (req?.file?.path) {
+        deleteFile(req.file.path);
+      }
       res.status(400);
-      res.send({
-        status: false,
-        message: `Email '${email}' is invalid.`,
-        path: req.file.path,
-      });
+      res.send(isValidate);
     }
   } catch (err) {
     // Revert file uploaded when error
@@ -29,6 +29,10 @@ export default async (req: any, res: any) => {
       deleteFile(req.file.path);
     }
     res.status(500);
-    res.send({ status: false, message: err.message });
+
+    res.send({
+      status: false,
+      errors: [{ field: "unknow", message: err.message }],
+    });
   }
 };
