@@ -9,8 +9,8 @@ export default async (req: any, res: any) => {
     ...(name && { name: { $regex: name, $options: "i" } }),
     ...(email && { email: { $regex: email, $options: "i" } }),
   };
-  page = REGEX_NUMBER.test(page) ? parseInt(page) : 1;
-  pageSize = REGEX_NUMBER.test(pageSize) ? parseInt(pageSize) : 10;
+  page = REGEX_NUMBER.test(page) ? parseInt(page, 10) : 1;
+  pageSize = REGEX_NUMBER.test(pageSize) ? parseInt(pageSize, 10) : 10;
   const skip = (page - 1) * pageSize;
   const users = await UserSchema.find(queryCond).skip(skip).limit(pageSize);
   const total = await UserSchema.collection.countDocuments();

@@ -3,7 +3,6 @@ import IUser from "../../../../entities/models/interfaces/IUser";
 import { uploadPhotoMiddleware } from "../../../../middlewares/upload";
 import { deleteFile } from "../../../../utils/Helpers";
 import { validateUser } from "../../../../services/users";
-import { STATIC_URL } from "../../../../utils/Constants";
 export default async (req: any, res: any) => {
   try {
     await uploadPhotoMiddleware(req, res);
