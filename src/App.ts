@@ -1,12 +1,11 @@
 import express = require("express");
 import * as bodyParser from "body-parser";
-import * as path from "path";
 import compression = require("compression"); // <-- import this library
 import routes from "./routes";
 import cors from "cors";
 import BaseMiddleware from "./middlewares/base";
 import { STATIC_URL } from "./utils/Constants";
-
+import morgan from "morgan";
 class App {
   public app;
 
@@ -16,6 +15,9 @@ class App {
   }
 
   private async config(): Promise<any> {
+    if (process.env.NODE_ENV !== "test") {
+      this.app.use(morgan("combined"));
+    }
     this.app.use(compression());
     this.app.use(cors());
     this.app.use(bodyParser.json());
