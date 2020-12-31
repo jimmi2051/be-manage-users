@@ -20,6 +20,12 @@ class User {
   get telephone(): string {
     return this._userModel.telephone;
   }
+  get createdAt(): Date {
+    return this._userModel.createdAt;
+  }
+  get updatedAt(): Date {
+    return this._userModel.updatedAt;
+  }
 }
 
 Object.seal(User);
