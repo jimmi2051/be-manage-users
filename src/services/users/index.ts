@@ -1,4 +1,5 @@
 import { validateEmail } from "../../utils/Helpers";
+import { REGEX_PHONE } from "../../utils/Constants";
 import UserSchema from "../../entities/schemas/User";
 
 const formatError = (field, message) => {
@@ -24,6 +25,14 @@ export const validateUser = async (user) => {
   if (user.email && user.email !== "" && !validateEmail(user.email)) {
     result.status = false;
     result.errors.push(formatError("email", "Email is invalid format!"));
+  }
+  if (user.telephone) {
+    if (!REGEX_PHONE.test(user.telephone)) {
+      result.status = false;
+      result.errors.push(
+        formatError("telephone", "Phone number is invalid format! ")
+      );
+    }
   }
   if (result.status) {
     const checkExistUser = await UserSchema.findOne({ email: user.email });
