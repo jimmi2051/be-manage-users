@@ -4,12 +4,12 @@ process.env.NODE_ENV = "test";
 //Require the dev-dependencies
 import chai from "chai";
 import chaiHttp from "chai-http";
-import server from "../../../App";
+import server from "../../../../App";
 let should = chai.should();
 
 chai.use(chaiHttp);
 //Our parent block
-describe("Pets", () => {
+describe("HealthCheck", () => {
   beforeEach((done) => {
     //Before each test we empty the database in your case
     done();
@@ -17,15 +17,15 @@ describe("Pets", () => {
   /*
    * Test the /GET route
    */
-  describe("/GET users", () => {
-    it("it should GET all the users", (done) => {
+  describe("/GET healthCheck", () => {
+    it("it should GET healthCheck is ok", (done) => {
       chai
         .request(server)
-        .get("/api/v0/users")
+        .get("/api/v0/healthCheck")
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.data.should.be.a("array");
-          res.body.status.should.be.a("boolean");
+          res.body.status.should.equal(true);
+          res.body.description.should.equal("Server is alive!");
           done();
         });
     });
