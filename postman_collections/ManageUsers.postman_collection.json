@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "75c5e943-d770-4cf7-8dca-9d2fc7e7a09b",
+		"name": "ManageUsers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/home/deftnt/Pictures/unnamed.jpg"
+						},
+						{
+							"key": "email",
+							"value": "jimmi2205@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Thanh Ly",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "157 Mai Xuan Thuong",
+							"type": "text"
+						},
+						{
+							"key": "telephone",
+							"value": "0978956043",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{host}}api/v0/signup",
+					"host": [
+						"{{host}}api"
+					],
+					"path": [
+						"v0",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}api/v0/users?page=1&pageSize=5",
+					"host": [
+						"{{host}}api"
+					],
+					"path": [
+						"v0",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
