@@ -6,7 +6,8 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "resolveJsonModule": true
   },
   "lib": ["es2015"],
   "include": ["src/**/*.ts"],
