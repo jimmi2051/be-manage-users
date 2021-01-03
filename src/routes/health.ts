@@ -9,7 +9,9 @@ class HealthRoutes {
       "/healthCheck",
       (req, res, next) => {
         /*  #swagger.auto = false
-
+            #swagger.tags = [{
+              "name": "HealthCheck"
+            }]
             #swagger.path = '/api/v0/healthCheck'
             #swagger.method = 'GET'
 

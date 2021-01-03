@@ -29,14 +29,17 @@
 
 ### Start with docker
 
-1. (Require) Start _Docker Compose of FE_ first.
-
 1. Start: **_docker-compose up --build -d_**
 
 ### Run test with local
 
 1. Test with dev: **_npm run test-dev_**
 1. Test normal: **_npm run test_**
+
+### Endpoint healthCheck
+
+1. Access to: http://localhost:5000/api/v0/healthCheck
+1. Get document API: http://localhost:5000/documentations
 
 ### Update Swagger
 

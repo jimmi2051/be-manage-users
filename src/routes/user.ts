@@ -10,7 +10,9 @@ class UserRoutes {
       "/signup",
       (req, res, next) => {
         /*  #swagger.auto = false
-
+            #swagger.tags = [{
+              name: "User",
+            },]
             #swagger.path = '/api/v0/signup'
             #swagger.method = 'POST'
 
@@ -67,7 +69,9 @@ class UserRoutes {
       "/users",
       (req, res, next) => {
         /*  #swagger.auto = false
-
+          #swagger.tags = [{
+              name: "User",
+            },]
           #swagger.path = '/api/v0/users'
           #swagger.method = 'GET'
           #swagger.parameters['page'] = {
