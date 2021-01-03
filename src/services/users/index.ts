@@ -34,6 +34,13 @@ export const validateUser = async (user) => {
       );
     }
   }
+  if (
+    user.photo &&
+    (user.photo === "" || user.photo === "/static/uploads/undefined")
+  ) {
+    result.status = false;
+    result.errors.push(formatError("photo", "Photo is required!"));
+  }
   if (result.status) {
     const checkExistUser = await UserSchema.findOne({ email: user.email });
     if (checkExistUser) {

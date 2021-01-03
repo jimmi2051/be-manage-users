@@ -10,6 +10,7 @@ export default async (req: any, res: any) => {
       ...req.body,
       photo: "/static/uploads/" + req?.file?.originalname ?? "",
     };
+    console.log("data", data);
     const isValidate = await validateUser(data);
     if (isValidate.status) {
       const user = await UserSchema.create(data);
