@@ -8,7 +8,7 @@ export default async (req: any, res: any) => {
     await uploadPhotoMiddleware(req, res);
     const data: IUser = <IUser>{
       ...req.body,
-      photo: "/static/" + req?.file?.originalname ?? "",
+      photo: "/static/uploads/" + req?.file?.originalname ?? "",
     };
     const isValidate = await validateUser(data);
     if (isValidate.status) {
